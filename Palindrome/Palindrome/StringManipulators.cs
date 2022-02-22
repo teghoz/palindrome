@@ -10,15 +10,16 @@ namespace Palindrome
     {
         public (string sanitized, string reversed) Reverse(string stringInConsideration, bool allowOnlyAlphabets = true)
         {
+            StringBuilder sb = new StringBuilder();
             var result = string.Empty;
             var characters = stringInConsideration.ToCharArray();
             var charactersToUse = allowOnlyAlphabets == false ? characters.ToList() : characters.ToList().Where(c => char.IsLetter(c)).ToList();
 
             for(var i = (charactersToUse.Count() - 1); i >= 0; i--)
             {
-                result += charactersToUse[i];
+                sb.Append(charactersToUse[i]);
             }
-            return (new String(charactersToUse.ToArray()), result);
+            return (new String(charactersToUse.ToArray()), sb.ToString());
         }
     }
 }
